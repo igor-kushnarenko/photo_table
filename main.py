@@ -26,6 +26,8 @@ def resize_photo(photo_path):
 def create_collage():
     """Функция составляет коллажи из фото. """
     global x, y
+    if not os.path.exists('static/completed'):
+        os.mkdir('static/completed')
     count = 1
     next_name = 1
     for file in list_path:
@@ -51,20 +53,4 @@ def create_collage():
             break
 
 
-# def writer_name():
-#     font = ImageFont.truetype('static/Roboto.ttf', size=80)
-#     # list_path = os.listdir('static/completed')
-#     # for file in list_path:
-#     path = 'static/completed/new_photo_1.jpg'
-#     collage = Image.open(path)
-#     draw_text = ImageDraw.Draw(collage)
-#     draw_text.text(
-#         (540, 1125),
-#         'Юля',
-#         font=font,
-#     )
-#     collage.show()
-
-
 create_collage()
-# writer_name()
