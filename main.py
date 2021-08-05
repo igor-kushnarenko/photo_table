@@ -1,21 +1,20 @@
 import os
 
-from PIL import Image
+from PIL import Image, ImageFont, ImageDraw
 
 WIDTH = 720
-x = 330
-y = 155
+START_X = 330
+START_Y = 155
+x = START_X
+y = START_Y
 
-
-card_path = 'static/card.jpg'
-im = Image.open(card_path)
-
-list_path = os.listdir('static/photos')
-
+im = Image.open('static/card.jpg')
 back_img = im.copy()
+list_path = os.listdir('static/photos')
 
 
 def resize_photo(photo_path):
+    """Функция изменяет размеры изображения сохраняя соотношения сторон."""
     photo = Image.open(photo_path)
     width, height = photo.size
     new_width = WIDTH
@@ -24,19 +23,48 @@ def resize_photo(photo_path):
     return photo_resize
 
 
-count = 1
-next_name = 1
-for file in list_path:
-    photo = resize_photo(f'static/photos/{file}')
-    back_img.paste(photo, (x, y))
-    x += WIDTH
-    count += 1
-    if count == 5:
-        x = 330
-        y += 1085
-    if count == 9:
-        back_img.save(f'new_photo_{next_name}.jpg', quality=100)
-        next_name += 1
-        count = 1
-        x = 330
-        y = 155
+def create_collage():
+    """Функция составляет коллажи из фото. """
+    global x, y
+    count = 1
+    next_name = 1
+    for file in list_path:
+        print('Фото добавлено..')
+        photo = resize_photo(f'static/photos/{file}')
+        back_img.paste(photo, (x, y))
+        x += WIDTH
+        count += 1
+        if count == 5:
+            x = START_X
+            y += 1085
+        if count == 9:
+            back_img.save(f'static/completed/new_photo_{next_name}.jpg', quality=100)
+            back_img.show()
+            next_name += 1
+            count = 1
+            x = START_X
+            y = START_Y
+        if (list_path.index(file) + 1) == len(list_path):
+            back_img.save(f'static/completed/new_photo_{next_name}.jpg', quality=100)
+            back_img.show()
+            print('Коллажи выполнены!')
+            break
+
+
+# def writer_name():
+#     font = ImageFont.truetype('static/Roboto.ttf', size=80)
+#     # list_path = os.listdir('static/completed')
+#     # for file in list_path:
+#     path = 'static/completed/new_photo_1.jpg'
+#     collage = Image.open(path)
+#     draw_text = ImageDraw.Draw(collage)
+#     draw_text.text(
+#         (540, 1125),
+#         'Юля',
+#         font=font,
+#     )
+#     collage.show()
+
+
+create_collage()
+# writer_name()
