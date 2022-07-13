@@ -50,7 +50,6 @@ def create_collage():
             y = START_Y
         if (processing_photos.index(file) + 1) == len(processing_photos):
             back_img.save(f'static/completed/new_photo_{next_name}.jpg', quality=100)
-            back_img.show()
             print('Коллажи выполнены!')
             break
 
