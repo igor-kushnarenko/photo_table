@@ -1,6 +1,6 @@
 import os
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
 
 WIDTH = 720
 START_X = 330
@@ -55,4 +55,3 @@ def create_collage():
 
 if __name__ == '__main__':
     create_collage()
-    namer()

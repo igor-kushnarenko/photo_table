@@ -1,5 +1,3 @@
-import os
-
 from PIL import ImageFont, ImageDraw
 from PIL import Image
 
