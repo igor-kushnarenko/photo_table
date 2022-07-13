@@ -1,6 +1,6 @@
 import os
 
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 
 WIDTH = 720
 START_X = 330
@@ -31,11 +31,11 @@ def create_collage():
     count = 1
     next_name = 1
     for file in processing_photos:
-        print('Фото добавлено..')
         photo = resize_photo(f'static/photos/{file}')
         back_img.paste(photo, (x, y))
         x += WIDTH
         count += 1
+        print('Фото добавлено..')
         if count == 5:
             x = START_X
             y += 1085
@@ -55,3 +55,4 @@ def create_collage():
 
 if __name__ == '__main__':
     create_collage()
+    namer()
