@@ -2,6 +2,8 @@ import os
 
 from PIL import Image
 
+from namer import namer
+
 WIDTH = 720
 START_X = 330
 START_Y = 155
@@ -55,3 +57,4 @@ def create_collage():
 
 if __name__ == '__main__':
     create_collage()
+    namer()
