@@ -28,7 +28,7 @@ APP_DIR = Path(__file__).resolve().parent
 STATIC_DIR = APP_DIR / "static"
 TEMPLATE_PATH = STATIC_DIR / "card.jpg"
 FONT_PATH = STATIC_DIR / "arial.ttf"
-OUTPUT_DIR = APP_DIR / "output"
+OUTPUT_DIR = Path.home() / "Pictures" / "PhotoTable"
 
 PHOTO_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp"}
 SLOT_X = 330
@@ -53,7 +53,7 @@ class PhotoRecord:
 class PhotoTableApp:
     def __init__(self, root: tk.Tk) -> None:
         self.root = root
-        self.root.title("PhotoTable — раскладка фотографий")
+        self.root.title("PhotoTable v.0.2 — раскладка фотографий")
         self.root.geometry("1080x760")
         self.root.minsize(900, 600)
         self.root.configure(bg="#f4f6fa")
